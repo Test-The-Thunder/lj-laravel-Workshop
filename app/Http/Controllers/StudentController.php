@@ -73,7 +73,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('edit',compact('student'));
     }
 
     /**
@@ -85,7 +85,21 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        // $student->update($request->all());
+        $validator = Validator::make($request->all(),[
+            'roll' => 'required|unique:students,roll,' . $student->id.'|numeric',
+            'name' => 'required'
+        ]);
+        if($validator->fails()){
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        Student::where('id',$student->id)->update([
+            'roll' => $request['roll'],
+            'name' => $request['name']
+        ]);
+
+        return redirect()->route('student');
     }
 
     /**

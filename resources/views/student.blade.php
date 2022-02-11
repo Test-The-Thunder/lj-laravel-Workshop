@@ -27,6 +27,7 @@
             @method('DELETE')
             <input type="submit" value="delete">
         </form>
+        <a href="student/{{$s->id}}/edit">Edit</a>
         <br>
     @endforeach
 </body>

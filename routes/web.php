@@ -21,3 +21,5 @@ Route::get('/about', [DemoController::class,'index']);
 Route::get('/student',[StudentController::class,'index'])->name('student');
 Route::post('/student',[StudentController::class,'store']);
 Route::delete('/student/{student}',[StudentController::class,'destroy'])->name('student.destory');
+Route::get('/student/{student}/edit',[StudentController::class,'edit']);
+Route::put('/student/{student}',[StudentController::class,'update']);
